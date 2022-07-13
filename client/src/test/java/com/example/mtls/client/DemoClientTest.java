@@ -39,11 +39,7 @@ class DemoClientTest {
             .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, (int) timeout.toMillis());
 
         if (sslContext != null) {
-            httpClient = httpClient.secure(spec -> spec.sslContext(sslContext).handlerConfigurator(sslHandler -> {
-                var sslEngine = sslHandler.engine();
-                var sslParameters = sslEngine.getSSLParameters();
-                sslParameters.setEndpointIdentificationAlgorithm(null);
-            }));
+            httpClient = httpClient.secure(spec -> spec.sslContext(sslContext));
         }
 
         var client = WebClient.builder()
