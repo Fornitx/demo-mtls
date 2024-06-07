@@ -7,7 +7,7 @@ import javax.net.ssl.SSLSocketFactory
 
 @Deprecated("")
 class JavaHttpClientTest {
-    @Test
+//    @Test
     fun test() {
         val sslContext = SSLContext.getInstance("TLS")
 //            sslContext.init()

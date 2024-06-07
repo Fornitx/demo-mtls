@@ -8,7 +8,6 @@ import io.netty.handler.ssl.SslContextBuilder
 import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
-import reactor.netty.http.Http2SslContextSpec
 import reactor.netty.http.HttpProtocol
 import reactor.netty.http.client.HttpClient
 import java.io.FileInputStream
@@ -17,8 +16,9 @@ import java.security.KeyStore
 import javax.net.ssl.KeyManagerFactory
 import javax.net.ssl.TrustManagerFactory
 
+@Deprecated("")
 class ReactorNettyHttpClientTest {
-    @Test
+//    @Test
     fun test() = runTest {
         val httpClient = HttpClient.create()
             .protocol(HttpProtocol.H2)

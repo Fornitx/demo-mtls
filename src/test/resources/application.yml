@@ -1,0 +1,27 @@
+management:
+  server:
+    port: 8090
+    ssl:
+      enabled: false
+
+server:
+  port: 8080
+  ssl:
+    enabled: true
+    key-store: etc/server.p12
+    key-store-type: PKCS12
+    key-store-password: 123456
+    trust-store: etc/server-truststore.p12
+    trust-store-type: PKCS12
+    trust-store-password: 123456
+    client-auth: need
+
+demo:
+  ssl:
+    enabled: true
+    key-store: etc/client.p12
+    key-store-type: PKCS12
+    key-store-password: 123456
+    trust-store: etc/client-truststore.p12
+    trust-store-type: PKCS12
+    trust-store-password: 123456
