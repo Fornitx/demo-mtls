@@ -1,6 +1,0 @@
-server:
-  http2:
-    enabled: true
-#    protocol: TLS
-#    enabled-protocols: TLSv1.3
-#    ciphers: TLS_CHACHA20_POLY1305_SHA256

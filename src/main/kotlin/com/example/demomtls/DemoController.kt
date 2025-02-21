@@ -15,7 +15,7 @@ private val log = KotlinLogging.logger {}
 class DemoController {
     @GetMapping(PATH)
     suspend fun foo(request: ServerHttpRequest): ResponseEntity<String> {
-        log.info { request.sslInfo!!.peerCertificates!![0] }
+        request.sslInfo?.peerCertificates?.forEach { certificate -> log.info { certificate } }
         return ResponseEntity.ok(LocalTime.now().toString())
     }
 }

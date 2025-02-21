@@ -1,0 +1,8 @@
+server:
+  ssl:
+    client-auth: none
+
+demo:
+  ssl:
+    enabled: false
+    bundle: client2 # non existent bundle

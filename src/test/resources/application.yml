@@ -1,27 +1,63 @@
 management:
   server:
-    port: 8090
     ssl:
       enabled: false
 
 server:
-  port: 8080
+  http2:
+    enabled: true
   ssl:
     enabled: true
-    key-store: etc/server.p12
-    key-store-type: PKCS12
-    key-store-password: 123456
-    trust-store: etc/server-truststore.p12
-    trust-store-type: PKCS12
-    trust-store-password: 123456
+    bundle: server1
     client-auth: need
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  ssl:
+    bundle:
+      jks:
+        server1:
+          key:
+            alias: server
+          keystore:
+            location: file:etc/server.p12
+            password: 123456
+            type: PKCS12
+          truststore:
+            location: file:etc/server-truststore.p12
+            password: 123456
+            type: PKCS12
+          options:
+            enabled-protocols: [ TLSv1.3 ]
+            ciphers:
+              - TLS_AES_128_GCM_SHA256
+              - TLS_AES_256_GCM_SHA384
+              - TLS_CHACHA20_POLY1305_SHA256
+        client1:
+          key:
+            alias: client
+          keystore:
+            location: file:etc/client.p12
+            password: 123456
+            type: PKCS12
+          truststore:
+            location: file:etc/client-truststore.p12
+            password: 123456
+            type: PKCS12
+          options:
+            enabled-protocols: [ TLSv1.3 ]
+            ciphers:
+              - TLS_AES_128_GCM_SHA256
+              - TLS_AES_256_GCM_SHA384
+              - TLS_CHACHA20_POLY1305_SHA256
+
+logging:
+  pattern:
+    dateformat: HH:mm:ss.SSS
 
 demo:
   ssl:
     enabled: true
-    key-store: etc/client.p12
-    key-store-type: PKCS12
-    key-store-password: 123456
-    trust-store: etc/client-truststore.p12
-    trust-store-type: PKCS12
-    trust-store-password: 123456
+    bundle: client1

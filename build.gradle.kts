@@ -1,8 +1,8 @@
 plugins {
-    id("org.springframework.boot") version System.getProperty("spring_version")
-    id("io.spring.dependency-management") version System.getProperty("spring_dm_version")
-    kotlin("jvm") version System.getProperty("kotlin_version")
-    kotlin("plugin.spring") version System.getProperty("kotlin_version")
+    kotlin("jvm")
+    kotlin("plugin.spring")
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
 }
 
 group = "com.example"
@@ -14,7 +14,7 @@ java {
     }
 }
 
-ext["kotlin-coroutines.version"] = System.getProperty("kotlin_coroutines_version")
+ext["kotlin-coroutines.version"] = providers.gradleProperty("kotlin-coroutines.version").get()
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -27,9 +27,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
-    implementation("io.github.oshai:kotlin-logging-jvm:" + System.getProperty("kotlin_logging_version"))
-
-//	implementation("io.github.hakky54:sslcontext-kickstart-for-netty:8.3.4")
+    implementation("io.github.oshai:kotlin-logging-jvm:" + providers.gradleProperty("kotlin-logging.version").get())
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
