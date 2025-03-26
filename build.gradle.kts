@@ -14,8 +14,6 @@ java {
     }
 }
 
-ext["kotlin-coroutines.version"] = providers.gradleProperty("kotlin-coroutines.version").get()
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-validation")
