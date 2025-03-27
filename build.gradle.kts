@@ -14,6 +14,8 @@ java {
     }
 }
 
+val mockitoAgent = configurations.create("mockitoAgent")
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -33,9 +35,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 
-//	implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
-//	implementation("org.apache.httpcomponents.core5:httpcore5:5.2.1")
-//	implementation("org.apache.httpcomponents.core5:httpcore5-h2:5.2.1")
+    mockitoAgent("org.mockito:mockito-core") { isTransitive = false }
 }
 
 kotlin {
@@ -46,6 +46,7 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    jvmArgs("-javaagent:${mockitoAgent.asPath}")
 }
 
 tasks.jar {

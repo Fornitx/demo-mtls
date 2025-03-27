@@ -1,9 +1,9 @@
 server:
   ssl:
     enabled: true
-    client-auth: need
+    client-auth: none
 
 demo:
   client:
     ssl:
-      enabled: true
+      enabled: false

@@ -20,11 +20,11 @@ abstract class AbstractWebTest {
     @Autowired
     protected lateinit var clientProperties: DemoProperties
 
-    protected val isServerSsl: Boolean
-        get() = serverProperties.ssl.isEnabled
+    private val isServerSsl: Boolean
+        get() = serverProperties.ssl?.isEnabled == true
 
     protected val isClientSsl: Boolean
-        get() = clientProperties.ssl.isEnabled
+        get() = clientProperties.client.ssl.isEnabled
 
     private val prefix: String
         get() = if (isServerSsl) "https" else "http"

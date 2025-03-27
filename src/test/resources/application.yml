@@ -1,0 +1,22 @@
+management:
+  server:
+    ssl:
+      enabled: false
+
+server:
+  ssl:
+    enabled: false
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  pattern:
+    dateformat: HH:mm:ss.SSS
+
+demo:
+  client:
+    ssl:
+      enabled: false
