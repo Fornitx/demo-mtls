@@ -20,4 +20,9 @@ out/
 .kotlin
 
 *.p12
+*.pem
+*.key
 *.cer
+*.crt
+*.csr
+*.srl

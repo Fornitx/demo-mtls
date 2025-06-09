@@ -1,8 +1,11 @@
 plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
+
     id("org.springframework.boot")
     id("io.spring.dependency-management")
+
+    id("com.bakdata.mockito") version "1.9.1"
 }
 
 group = "com.example"
@@ -13,8 +16,6 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
-
-val mockitoAgent = configurations.create("mockitoAgent")
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -27,15 +28,15 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
-    implementation("io.github.oshai:kotlin-logging-jvm:" + providers.gradleProperty("kotlin-logging.version").get())
+    implementation("io.github.oshai:kotlin-logging-jvm:" + providers.gradleProperty("kotlin1-logging.version").get())
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
 
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 
-    mockitoAgent("org.mockito:mockito-core") { isTransitive = false }
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
@@ -46,7 +47,7 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    jvmArgs("-javaagent:${mockitoAgent.asPath}")
+    jvmArgs("-Djdk.internal.httpclient.disableHostnameVerification")
 }
 
 tasks.jar {

@@ -1,6 +1,6 @@
 server:
   ssl:
-    key-store: file:etc/keytool/server.p12
+    key-store: file:etc/keytool/server-keystore.p12
     key-store-password: 123456
     key-store-type: PKCS12
     trust-store: file:etc/keytool/server-truststore.p12
@@ -10,7 +10,7 @@ server:
 demo:
   client:
     ssl:
-      key-store: file:etc/keytool/client.p12
+      key-store: file:etc/keytool/client-keystore.p12
       key-store-password: 123456
       key-store-type: PKCS12
       trust-store: file:etc/keytool/client-truststore.p12

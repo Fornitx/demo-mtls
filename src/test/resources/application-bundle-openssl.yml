@@ -1,35 +1,35 @@
 server:
   ssl:
-    bundle: server
+    bundle: server1
 
 spring:
   ssl:
     bundle:
       jks:
-        server:
+        server1:
           key:
             alias: server
           keystore:
-            location: file:etc/keytool/server.p12
+            location: file:etc/openssl/server-keystore.p12
             password: 123456
             type: PKCS12
           truststore:
-            location: file:etc/keytool/server-truststore.p12
+            location: file:etc/openssl/server-truststore.p12
             password: 123456
             type: PKCS12
-        client:
+        client1:
           key:
             alias: client
           keystore:
-            location: file:etc/keytool/client.p12
+            location: file:etc/openssl/client-keystore.p12
             password: 123456
             type: PKCS12
           truststore:
-            location: file:etc/keytool/client-truststore.p12
+            location: file:etc/openssl/client-truststore.p12
             password: 123456
             type: PKCS12
 
 demo:
   client:
     ssl:
-      bundle: client
+      bundle: client1
