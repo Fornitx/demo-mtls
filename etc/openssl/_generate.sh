@@ -14,7 +14,6 @@ openssl x509 -req -days 3650 -in client.csr -CA ca.crt -CAkey ca.key -CAcreatese
 openssl pkcs12 -export -in server.crt -inkey server.key -name server -passout pass:123456 -out server-keystore.p12 -CAfile ca.crt -caname ca -chain
 openssl pkcs12 -export -in client.crt -inkey client.key -name client -passout pass:123456 -out client-keystore.p12 -CAfile ca.crt -caname ca -chain
 
-keytool -import -file ca.crt -alias "ca" -keystore server-truststore.p12 -storetype PKCS12 -storepass 123456 -noprompt
-keytool -import -file ca.crt -alias "ca" -keystore client-truststore.p12 -storetype PKCS12 -storepass 123456 -noprompt
+keytool -import -file ca.crt -alias "ca" -keystore truststore.p12 -storetype PKCS12 -storepass 123456 -noprompt
 
 rm -vf *.key *.pem *.crt *.csr *.srl

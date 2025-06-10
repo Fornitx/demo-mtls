@@ -14,7 +14,7 @@ spring:
             password: 123456
             type: PKCS12
           truststore:
-            location: file:etc/openssl/server-truststore.p12
+            location: file:etc/openssl/truststore.p12
             password: 123456
             type: PKCS12
         client1:
@@ -25,7 +25,7 @@ spring:
             password: 123456
             type: PKCS12
           truststore:
-            location: file:etc/openssl/client-truststore.p12
+            location: file:etc/openssl/truststore.p12
             password: 123456
             type: PKCS12
 

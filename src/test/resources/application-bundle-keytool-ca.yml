@@ -11,11 +11,11 @@ spring:
             alias: server
             password: 123456
           keystore:
-            location: file:etc/keytool/server-keystore.p12
+            location: file:etc/keytool-ca/server-keystore.p12
             password: 123456
             type: PKCS12
           truststore:
-            location: file:etc/keytool/server-truststore.p12
+            location: file:etc/keytool-ca/truststore.p12
             password: 123456
             type: PKCS12
         client1:
@@ -23,11 +23,11 @@ spring:
             alias: client
             password: 123456
           keystore:
-            location: file:etc/keytool/client-keystore.p12
+            location: file:etc/keytool-ca/client-keystore.p12
             password: 123456
             type: PKCS12
           truststore:
-            location: file:etc/keytool/client-truststore.p12
+            location: file:etc/keytool-ca/truststore.p12
             password: 123456
             type: PKCS12
 

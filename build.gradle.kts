@@ -47,7 +47,6 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    jvmArgs("-Djdk.internal.httpclient.disableHostnameVerification")
 }
 
 tasks.jar {
