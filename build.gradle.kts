@@ -5,7 +5,7 @@ plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
 
-    id("com.bakdata.mockito") version "1.11.0"
+    id("com.bakdata.mockito") version "1.11.1"
 }
 
 group = "com.example"
