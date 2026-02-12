@@ -15,21 +15,22 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
-          distribution: liberica
-          java-version: 21
+          distribution: oracle
+          java-version: 25
 
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v5
 
       - name: Gradle test
         run: >-
           gradle test
           --show-version
           --no-daemon
-          -Pkotlin1-lang.version=1.9.25
-          -Pkotlin1-logging.version=6.0.9
-          -Pspring-boot.version=3.5.0
+          --parallel
+          -Pkotlin-lang.version=2.3.10
+          -Pkotlin-logging.version=7.0.14
+          -Pspring-boot.version=4.0.2
           -Pspring-dm.version=1.1.7

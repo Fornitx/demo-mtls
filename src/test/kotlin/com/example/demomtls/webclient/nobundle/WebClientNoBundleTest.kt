@@ -30,17 +30,17 @@ class TestWebClientNoBundleConfig {
                 val ssl = properties.client.ssl
                 val sslContext = SslContextBuilder.forClient()
                     .keyManager(KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm()).apply {
-                        val keyStorePassword = ssl.keyStorePassword.toCharArray()
+                        val keyStorePassword = ssl.keyStorePassword!!.toCharArray()
                         init(KeyStore.getInstance(ssl.keyStoreType).apply {
-                            ResourceUtils.getURL(ssl.keyStore).openStream().use { stream ->
+                            ResourceUtils.getURL(ssl.keyStore!!).openStream().use { stream ->
                                 load(stream, keyStorePassword)
                             }
                         }, keyStorePassword)
                     })
                     .trustManager(TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm()).apply {
                         init(KeyStore.getInstance(ssl.trustStoreType).apply {
-                            ResourceUtils.getURL(ssl.trustStore).openStream().use { stream ->
-                                load(stream, ssl.trustStorePassword.toCharArray())
+                            ResourceUtils.getURL(ssl.trustStore!!).openStream().use { stream ->
+                                load(stream, ssl.trustStorePassword!!.toCharArray())
                             }
                         })
                     })

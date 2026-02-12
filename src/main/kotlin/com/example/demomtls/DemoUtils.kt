@@ -1,8 +1,6 @@
 package com.example.demomtls
 
-import org.springframework.boot.autoconfigure.http.client.reactive.ClientHttpConnectorBuilderCustomizer
-import org.springframework.boot.autoconfigure.web.reactive.function.client.ReactorNettyHttpClientMapper
+import org.springframework.boot.http.client.autoconfigure.reactive.ClientHttpConnectorBuilderCustomizer
 import org.springframework.boot.http.client.reactive.ReactorClientHttpConnectorBuilder
 
-typealias OldClientCustomizer = ReactorNettyHttpClientMapper
 typealias ClientCustomizer = ClientHttpConnectorBuilderCustomizer<ReactorClientHttpConnectorBuilder>

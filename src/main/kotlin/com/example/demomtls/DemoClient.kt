@@ -2,12 +2,18 @@ package com.example.demomtls
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.micrometer.observation.ObservationRegistry
-import org.springframework.boot.autoconfigure.web.ServerProperties
-import org.springframework.boot.autoconfigure.web.reactive.function.client.WebClientSsl
-import org.springframework.boot.web.reactive.context.ReactiveWebServerInitializedEvent
+import org.springframework.boot.web.server.autoconfigure.ServerProperties
+import org.springframework.boot.web.server.reactive.context.ReactiveWebServerInitializedEvent
+import org.springframework.boot.webclient.autoconfigure.WebClientSsl
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
-import org.springframework.web.reactive.function.client.*
+import org.springframework.web.reactive.function.client.ClientRequest
+import org.springframework.web.reactive.function.client.ClientResponse
+import org.springframework.web.reactive.function.client.CoExchangeFilterFunction
+import org.springframework.web.reactive.function.client.CoExchangeFunction
+import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.reactive.function.client.awaitEntity
+import org.springframework.web.reactive.function.client.awaitExchange
 import java.util.function.Consumer
 
 private val log = KotlinLogging.logger {}
@@ -46,7 +52,7 @@ class DemoClient(
         val entity = webClientBuilder.baseUrl(url)
             .apply(
                 if (isClientSsl && clientProperties.ssl.bundle != null) {
-                    webClientSsl.fromBundle(clientProperties.ssl.bundle)
+                    webClientSsl.fromBundle(clientProperties.ssl.bundle!!)
                 } else {
                     Consumer {}
                 })

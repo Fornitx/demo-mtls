@@ -4,7 +4,7 @@ import io.netty.channel.ChannelOption
 import io.netty.handler.logging.LogLevel
 import io.netty.handler.timeout.ReadTimeoutHandler
 import io.netty.handler.timeout.WriteTimeoutHandler
-import org.springframework.boot.autoconfigure.http.client.reactive.ClientHttpConnectorBuilderCustomizer
+import org.springframework.boot.http.client.autoconfigure.reactive.ClientHttpConnectorBuilderCustomizer
 import org.springframework.boot.http.client.reactive.ReactorClientHttpConnectorBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
