@@ -1,0 +1,30 @@
+management:
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
+    process:
+      enabled: true
+    ssl:
+      enabled: true
+  server:
+    ssl:
+      enabled: false
+
+server:
+  ssl:
+    enabled: false
+  http2:
+    enabled: true
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  pattern:
+    dateformat: HH:mm:ss.SSS

@@ -1,0 +1,5 @@
+demo:
+  client:
+    is-server-ssl: true
+    ssl:
+      enabled: true

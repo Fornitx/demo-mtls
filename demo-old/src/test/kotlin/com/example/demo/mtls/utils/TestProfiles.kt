@@ -1,0 +1,12 @@
+package com.example.demo.mtls.utils
+
+object TestProfiles {
+    const val NOBUNDLE = "nobundle"
+
+    const val BUNDLE_KEYTOOL = "bundle-keytool"
+    const val BUNDLE_KEYTOOL_CA = "bundle-keytool-ca"
+    const val BUNDLE_OPENSSL = "bundle-openssl"
+
+    const val TLS = "tls"
+    const val MTLS = "mtls"
+}

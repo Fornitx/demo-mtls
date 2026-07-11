@@ -1,0 +1,20 @@
+server:
+  ssl:
+    bundle: server1
+
+spring:
+  ssl:
+    bundle:
+      jks:
+        server1:
+          key:
+            alias: server
+            password: 123456
+          keystore:
+            location: file:etc/keytool-ca/server-keystore.p12
+            password: 123456
+            type: PKCS12
+          truststore:
+            location: file:etc/keytool-ca/truststore.p12
+            password: 123456
+            type: PKCS12

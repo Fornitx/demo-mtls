@@ -1,0 +1,20 @@
+spring:
+  ssl:
+    bundle:
+      jks:
+        client1:
+          key:
+            alias: client
+          keystore:
+            location: file:etc/openssl/client-keystore.p12
+            password: 123456
+            type: PKCS12
+          truststore:
+            location: file:etc/openssl/truststore.p12
+            password: 123456
+            type: PKCS12
+
+demo:
+  client:
+    ssl:
+      bundle: client1
