@@ -27,14 +27,14 @@ kotlin {
         languageVersion.set(
             KotlinVersion.valueOf(
                 "KOTLIN_${
-                    libs.versions.kotlin.get().substringBeforeLast(".").replace(".", "_")
+                    libs.versions.kotlin.core.get().substringBeforeLast(".").replace(".", "_")
                 }"
             )
         )
         apiVersion.set(
             KotlinVersion.valueOf(
                 "KOTLIN_${
-                    libs.versions.kotlin.get().substringBeforeLast(".").replace(".", "_")
+                    libs.versions.kotlin.core.get().substringBeforeLast(".").replace(".", "_")
                 }"
             )
         )
@@ -43,8 +43,8 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlin.gradlePlugin)
-    implementation(libs.kotlin.springPlugin)
-    implementation(libs.springBoot.gradlePlugin)
-    implementation(libs.spring.dependencyManagementPlugin)
-    implementation(libs.bakdata.mockito)
+    implementation(libs.kotlin.spring.gradlePlugin)
+    implementation(libs.spring.boot.gradlePlugin)
+    implementation(libs.spring.dm.gradlePlugin)
+    implementation(libs.bakdata.mockito.gradlePlugin)
 }

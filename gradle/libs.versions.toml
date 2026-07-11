@@ -3,29 +3,27 @@
 jdk = "21"
 
 # dependency versions
-kotlinLogging = "8.0.4"
+kotlin-core = "2.2.21"
+kotlin-logging = "8.0.4"
+spring-boot = "4.0.7"
 
 # plugin versions
-springBoot = "4.0.7"
 springGradleDependencyManagement = "1.1.7"
-kotlin = "2.2.21"
 bakdata-mockito = "2.2.0"
 
 [libraries]
 # project dependencies
-kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlinLogging" }
-spring-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlin-logging" }
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 
 # test dependencies
 
 # buildSrc dependencies (plugins)
-kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-springPlugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin" }
-#kotlin-allopenPlugin = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref = "kotlin" }
-#kotlin-noargPlugin = { module = "org.jetbrains.kotlin:kotlin-noarg", version.ref = "kotlin" }
-springBoot-gradlePlugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springBoot" }
-spring-dependencyManagementPlugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "springGradleDependencyManagement" }
-bakdata-mockito = { module = "com.bakdata.mockito:com.bakdata.mockito.gradle.plugin", version.ref = "bakdata-mockito" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-core" }
+kotlin-spring-gradlePlugin = { module = "org.jetbrains.kotlin.plugin.spring:org.jetbrains.kotlin.plugin.spring.gradle.plugin", version.ref = "kotlin-core" }
+spring-boot-gradlePlugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring-boot" }
+spring-dm-gradlePlugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "springGradleDependencyManagement" }
+bakdata-mockito-gradlePlugin = { module = "com.bakdata.mockito:com.bakdata.mockito.gradle.plugin", version.ref = "bakdata-mockito" }
 
 [plugins]
 

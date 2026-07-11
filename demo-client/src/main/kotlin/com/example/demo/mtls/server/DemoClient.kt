@@ -2,10 +2,9 @@ package com.example.demo.mtls.server
 
 import com.example.demo.commons.DemoConstants.PATH
 import com.example.demo.commons.DemoProperties
+import com.example.demo.commons.SSLUtils.applySslIfNeeded
 import io.github.oshai.kotlinlogging.KotlinLogging
-import org.springframework.boot.web.server.reactive.context.ReactiveWebServerInitializedEvent
 import org.springframework.boot.webclient.autoconfigure.WebClientSsl
-import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.ClientRequest
 import org.springframework.web.reactive.function.client.ClientResponse
@@ -14,7 +13,6 @@ import org.springframework.web.reactive.function.client.CoExchangeFunction
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitEntity
 import org.springframework.web.reactive.function.client.awaitExchange
-import java.util.function.Consumer
 
 private val log = KotlinLogging.logger {}
 
@@ -25,18 +23,9 @@ class DemoClient(
     private val webClientSsl: WebClientSsl,
 ) {
     private val clientProperties = demoProperties.client
-
     private val isServerSsl = clientProperties.isServerSsl
-    private val isClientSsl = clientProperties.ssl.isEnabled
-
     private val prefix = if (isServerSsl) "https" else "http"
-
     private var localServerPort = clientProperties.port
-
-    @EventListener(ReactiveWebServerInitializedEvent::class)
-    fun setPort(event: ReactiveWebServerInitializedEvent) {
-        this.localServerPort = event.webServer.port
-    }
 
     suspend fun callLocalhost() {
         call("$prefix://localhost:${localServerPort}${PATH}")
@@ -48,12 +37,7 @@ class DemoClient(
 
     suspend fun call(url: String) {
         val entity = webClientBuilder.baseUrl(url)
-            .apply(
-                if (isClientSsl && clientProperties.ssl.bundle != null) {
-                    webClientSsl.fromBundle(clientProperties.ssl.bundle!!)
-                } else {
-                    Consumer {}
-                })
+            .applySslIfNeeded(clientProperties, webClientSsl)
             .filters {
                 it.add(logRequest())
                 it.add(logResponse())

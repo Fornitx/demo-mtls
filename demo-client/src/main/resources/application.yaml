@@ -11,12 +11,9 @@ management:
     ssl:
       enabled: true
 
-server:
-  port: 8081
-
 spring:
-#  main:
-#    web-application-type: none
+  main:
+    web-application-type: none
   output:
     ansi:
       enabled: always

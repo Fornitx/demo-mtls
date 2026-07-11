@@ -2,6 +2,7 @@ package com.example.demo.mtls.server
 
 import com.example.demo.commons.DemoProperties
 import com.example.demo.commons.SSLLoggingUtils
+import com.example.demo.commons.SSLUtils.applySslIfNeeded
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.netty.channel.ChannelOption
 import io.netty.handler.logging.LogLevel
@@ -14,10 +15,12 @@ import java.util.function.Supplier
 private val log = KotlinLogging.logger {}
 
 @Configuration
-class DemoClientConfig(private val properties: DemoProperties) {
+class DemoClientConfig(demoProperties: DemoProperties) {
+    private val properties = demoProperties.client
+
     @Bean
     fun clientHttpConnectorBuilderCustomizer(): ClientCustomizer {
-        val timeout = properties.client.timeout
+        val timeout = properties.timeout
         val timeoutMillis = timeout.toMillis()
         return ClientCustomizer { builder ->
             builder.withHttpClientCustomizer { httpClient ->
@@ -36,6 +39,7 @@ class DemoClientConfig(private val properties: DemoProperties) {
 //                        con.addHandler(WriteTimeoutHandler(timeoutMillis, TimeUnit.MILLISECONDS))
                     }
                     .metrics(true, Supplier { MicrometerChannelMetricsRecorder("demo.webclient", "") })
+                    .applySslIfNeeded(properties)
             }
         }
     }

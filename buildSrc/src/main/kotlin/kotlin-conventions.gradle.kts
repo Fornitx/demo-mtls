@@ -21,14 +21,14 @@ kotlin {
         languageVersion.set(
             KotlinVersion.valueOf(
                 "KOTLIN_${
-                    libs.findVersion("kotlin").get().toString().substringBeforeLast(".").replace(".", "_")
+                    libs.findVersion("kotlin-core").get().toString().substringBeforeLast(".").replace(".", "_")
                 }"
             )
         )
         apiVersion.set(
             KotlinVersion.valueOf(
                 "KOTLIN_${
-                    libs.findVersion("kotlin").get().toString().substringBeforeLast(".").replace(".", "_")
+                    libs.findVersion("kotlin-core").get().toString().substringBeforeLast(".").replace(".", "_")
                 }"
             )
         )

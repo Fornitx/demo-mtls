@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    api(platform(libs.spring.bom))
+    api(platform(libs.spring.boot.bom))
 
     api("org.springframework.boot:spring-boot-web-server")
     api("org.springframework.boot:spring-boot-webclient")

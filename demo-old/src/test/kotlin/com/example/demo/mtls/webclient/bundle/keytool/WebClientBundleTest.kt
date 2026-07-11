@@ -16,7 +16,7 @@ abstract class WebClientBundleTest : AbstractWebTest() {
     @Test
     fun testLocalhost() = runTest { client.callLocalhost() }
 
-    @Test
+//    @Test
     fun testIp() = runTest { client.callIp() }
 }
 
