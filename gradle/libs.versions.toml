@@ -6,7 +6,7 @@ jdk = "21"
 kotlinLogging = "8.0.4"
 
 # plugin versions
-springBoot = "4.0.7"
+springBoot = "4.1.0"
 springGradleDependencyManagement = "1.1.7"
 kotlin = "2.2.21"
 bakdata-mockito = "2.2.0"
