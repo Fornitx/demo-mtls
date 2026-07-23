@@ -5,6 +5,10 @@ plugins {
     `kotlin-dsl`
 }
 
+dependencyLocking {
+    lockAllConfigurations()
+}
+
 kotlin {
     jvmToolchain {
         languageVersion.set(

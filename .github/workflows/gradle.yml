@@ -32,6 +32,7 @@ jobs:
           --show-version
           --no-daemon
           --parallel
+          --write-locks
           --build-cache
           --configuration-cache
           --configuration-cache-problems=warn

@@ -12,6 +12,10 @@ java {
     }
 }
 
+dependencyLocking {
+    lockAllConfigurations()
+}
+
 //tasks.compileJava {
 //    options.compilerArgs.addAll(
 //        listOf(
