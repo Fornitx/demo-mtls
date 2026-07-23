@@ -26,46 +26,6 @@ object SSLUtils {
         val isServerSsl = properties.isServerSsl
         val noBundle = ssl.bundle.isNullOrBlank()
         return if (isClientSsl && noBundle) {
-            this.tcpConfiguration { tcpClient ->
-                tcpClient.secure { secure ->
-                    val sslContext = SslContextBuilder.forClient()
-                        .keyManager(KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm()).apply {
-                            val keyStorePassword = ssl.keyStorePassword!!.toCharArray()
-                            init(KeyStore.getInstance(ssl.keyStoreType).apply {
-                                ResourceUtils.getURL(ssl.keyStore!!).openStream().use { stream ->
-                                    load(stream, keyStorePassword)
-                                }
-                            }, keyStorePassword)
-                        })
-                        .trustManager(TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm()).apply {
-                            init(KeyStore.getInstance(ssl.trustStoreType).apply {
-                                ResourceUtils.getURL(ssl.trustStore!!).openStream().use { stream ->
-                                    load(stream, ssl.trustStorePassword!!.toCharArray())
-                                }
-                            })
-                        })
-                    secure.sslContext(sslContext.build())
-                }
-            }
-        } else if (isServerSsl && !isClientSsl) {
-            this.tcpConfiguration { tcpClient ->
-                tcpClient.secure { secure ->
-                    val sslContextBuilder = SslContextBuilder.forClient()
-                        .trustManager(InsecureTrustManagerFactory.INSTANCE)
-                    secure.sslContext(sslContextBuilder.build())
-                }
-            }
-        } else {
-            this
-        }
-    }
-
-    fun HttpClient.applySslIfNeeded_new(properties: ClientProperties): HttpClient {
-        val ssl = properties.ssl
-        val isClientSsl = ssl.isEnabled
-        val isServerSsl = properties.isServerSsl
-        val noBundle = ssl.bundle.isNullOrBlank()
-        return if (isClientSsl && noBundle) {
             this.secure {
                 val sslContext = SslContextBuilder.forClient()
                     .keyManager(KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm()).apply {
